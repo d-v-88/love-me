@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Just One Question ❤️</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 50px 60px;
+        text-align: center;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        width: 500px;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #2b2b2b;
+      }
+
+      .buttons {
+        position: relative;
+        height: 120px;
+      }
+
+      button {
+        position: absolute;
+        padding: 15px 35px;
+        font-size: 18px;
+        border-radius: 40px;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      #yes {
+        left: 100px;
+        background: linear-gradient(135deg, #ff4b7d, #ff6a95);
+        color: white;
+        box-shadow: 0 15px 30px rgba(255, 75, 125, 0.4);
+        z-index: 2;
+      }
+
+      #yes:hover {
+        box-shadow: 0 20px 40px rgba(255, 75, 125, 0.6);
+      }
+
+      #no {
+        right: 80px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no1 {
+        display: none;
+        right: 0px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no2 {
+        display: none;
+        right: -100px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no3 {
+        display: none;
+        right: 80px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no4 {
+        display: none;
+        top: -50px;
+        right: 0px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no5 {
+        display: none;
+        top: 100px;
+        right: 200px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no6 {
+        display: none;
+        top: -100px;
+        right: 300px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no7 {
+        display: none;
+        top: -50px;
+        right: 40px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no8 {
+        display: none;
+        top: -200pxpx;
+        right: 100px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no9 {
+        display: none;
+        top: 80px;
+        right: 80px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no10 {
+        display: none;
+        top: -100px;
+        right: 50px;
+        background: #ffffff;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #no,
+      #no1,
+      #no2,
+      #no3,
+      #no4,
+      #no5,
+      #no6,
+      #no7,
+      #no8,
+      #no9,
+      #no10 {
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      .message {
+        margin-top: 50px;
+        font-size: 22px;
+        color: #2b2b2b;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .message.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Do you love me? ❤️</h1>
+
+      <div class="buttons" id="area">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+        <button id="no1">No</button>
+        <button id="no2">No</button>
+        <button id="no3">No</button>
+        <button id="no4">No</button>
+        <button id="no5">No</button>
+        <button id="no6">No</button>
+        <button id="no7">No</button>
+        <button id="no8">No</button>
+        <button id="no9">No</button>
+        <button id="no10">No</button>
+      </div>
+
+      <div class="message" id="msg">I love you too❤️</div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("no");
+      const yesBtn = document.getElementById("yes");
+      const area = document.getElementById("area");
+      const msg = document.getElementById("msg");
+
+      let yesScale = 1;
+
+      no.addEventListener("mousemove", function () {
+        document.querySelector("#no").style.display = "none";
+        document.querySelector("#no1").style.display = "block";
+      });
+
+      no1.addEventListener("mousemove", function () {
+        document.querySelector("#no1").style.display = "none";
+        document.querySelector("#no2").style.display = "block";
+      });
+
+      no2.addEventListener("mousemove", function () {
+        document.querySelector("#no2").style.display = "none";
+        document.querySelector("#no3").style.display = "block";
+      });
+
+      no3.addEventListener("mousemove", function () {
+        document.querySelector("#no3").style.display = "none";
+        document.querySelector("#no4").style.display = "block";
+      });
+
+      no4.addEventListener("mousemove", function () {
+        document.querySelector("#no4").style.display = "none";
+        document.querySelector("#no5").style.display = "block";
+      });
+
+      no5.addEventListener("mousemove", function () {
+        document.querySelector("#no5").style.display = "none";
+        document.querySelector("#no6").style.display = "block";
+      });
+
+      no6.addEventListener("mousemove", function () {
+        document.querySelector("#no6").style.display = "none";
+        document.querySelector("#no7").style.display = "block";
+      });
+
+      no7.addEventListener("mousemove", function () {
+        document.querySelector("#no7").style.display = "none";
+        document.querySelector("#no8").style.display = "block";
+      });
+
+      no8.addEventListener("mousemove", function () {
+        document.querySelector("#no8").style.display = "none";
+        document.querySelector("#no9").style.display = "block";
+      });
+
+      no9.addEventListener("mousemove", function () {
+        document.querySelector("#no9").style.display = "none";
+        document.querySelector("#no10").style.display = "block";
+      });
+
+      no10.addEventListener("mousemove", function () {
+        document.querySelector("#no10").style.display = "none";
+        document.querySelector("#no").style.display = "block";
+      });
+
+      // area.addEventListener("mousemove", (e) => {
+      //   const noRect = noBtn.getBoundingClientRect();
+      //   const distance = Math.hypot(
+      //     e.clientX - (noRect.left + noRect.width / 2),
+      //     e.clientY - (noRect.top + noRect.height / 2),
+      //   );
+
+      //   if (distance < 120) {
+      //     const areaRect = area.getBoundingClientRect();
+
+      //     const newX = Math.random() * (areaRect.width - noRect.width);
+      //     const newY = Math.random() * (areaRect.height - noRect.height);
+
+      //     noBtn.style.left = `${newX}px`;
+      //     noBtn.style.top = `${newY}px`;
+
+      //     yesScale = Math.min(yesScale + 0.05, 1.5);
+      //     yesBtn.style.transform = `scale(${yesScale})`;
+      //   }
+      // });
+
+      yesBtn.addEventListener("click", () => {
+        msg.classList.add("show");
+        yesBtn.style.transform = "scale(1.6)";
+      });
+    </script>
+  </body>
+</html>
